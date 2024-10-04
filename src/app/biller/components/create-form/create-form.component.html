@@ -1,0 +1,107 @@
+<div class="container">
+    <form [formGroup]="createUserForm">
+        <!-- Section for User Information -->
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="name">Nombre</label>
+                    <input type="text" class="form-control" id="name" formControlName="name">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="dni">Identificacion</label>
+                    <input type="number" class="form-control" id="dni" formControlName="dni">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="addres">Direccion</label>
+                    <input type="text" class="form-control" id="addres" formControlName="addres">
+                </div>
+            </div>
+        </div>
+
+        <!-- Section for Products Table -->
+        <div class="form-group mt-4">
+            <label for="products">Productos</label>
+            <div formArrayName="products">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>Numero</th>
+                                <th>Descripcion</th>
+                                <th>Cantidad</th>
+                                <th>Precio unitario</th>
+                                <th>Impuesto IVA</th>
+                                <th>Valor del IVA</th>
+                                <th>Total por fila</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr [formGroup]="newProduct">
+                                <td>
+                                    <input type="number" class="form-control" formControlName="number">
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" formControlName="description">
+                                </td>
+                                <td>
+                                    <input type="number" class="form-control" formControlName="quantity">
+                                </td>
+                                <td>
+                                    <input type="number" class="form-control" formControlName="unitPrice">
+                                </td>                                
+                                <td>
+                                    <select class="form-control" formControlName="tax">
+                                        <option value="0">0%</option>
+                                        <option value="12">12%</option>
+                                        <option value="19">19%</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <input type="number" class="form-control disable"  formControlName="taxValue" >
+                                </td>
+                                <td>
+                                    <input type="number" class="form-control disable"  formControlName="total" >
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-success" (click)="addProduct()">Agregar</button>
+                                </td>
+                            </tr>
+                            <tr *ngFor="let product of createUserForm.get('products')?.value; let i = index">
+                                <td>{{product.number}}</td>
+                                <td>{{product.description}}</td>
+                                <td>{{product.quantity}}</td>
+                                <td>{{product.unitPrice}}</td>
+                                <td>{{product.tax}}</td>
+                                <td>{{product.taxValue}}</td>
+                                <td>{{product.total | currency}} </td>
+                                <td>
+                                    <button type="button" class="btn btn-danger" (click)="deleteProduct(i)">Borrar</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+            </div>
+
+        </div>
+    </form>
+</div>
+
+<div class="mt-4 container  ">
+   <div class="d-flex  w-100 justify-content-end">
+    <div *ngIf="newProduct.valid" class="d-flex flex-column">
+        <div  class="text-left">
+            <p>Total sin IVA: {{calculateTaxFreeTotal() | currency}} </p>
+            <p>Total del  IVA: {{calculateTotalOfIva() | currency }}</p>
+            <p>Total + IVA: {{calculateTotalWithIva() | currency}} </p>
+        </div>
+            <button type="button" class="btn btn-primary" (click)="createBiller()">{{biller ? 'Editar' : 'Crear'}}</button>
+    </div>
+   </div>
+</div>

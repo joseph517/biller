@@ -1,0 +1,22 @@
+<div class="container">
+    <table class="table table-bordered table-striped">
+        <thead class="thead-light">
+            <tr>
+                <th>Nombre</th>
+                <th>Identificacion</th>
+                <th>Direccion</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let biller of billerList">
+                <td>{{biller.name}}</td>
+                <td>{{biller.dni}}</td>
+                <td>{{biller.addres}}</td>
+                <td>
+                    <button class="btn btn-primary" (click)="onEdit(biller.id)">Editar</button>
+                </td>
+            </tr>
+        </tbody>   
+    </table>
+</div>
