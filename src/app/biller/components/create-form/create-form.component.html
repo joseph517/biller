@@ -86,16 +86,14 @@
                         </tbody>
                     </table>
                 </div>
-                
             </div>
-
         </div>
     </form>
 </div>
 
 <div class="mt-4 container  ">
    <div class="d-flex  w-100 justify-content-end">
-    <div *ngIf="newProduct.valid" class="d-flex flex-column">
+    <div class="d-flex flex-column">
         <div  class="text-left">
             <p>Total sin IVA: {{calculateTaxFreeTotal() | currency}} </p>
             <p>Total del  IVA: {{calculateTotalOfIva() | currency }}</p>
