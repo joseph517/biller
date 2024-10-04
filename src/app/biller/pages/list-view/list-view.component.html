@@ -1,4 +1,7 @@
+
+
 <div class="container">
+    <biller-search (search)="onSearch($event)"></biller-search>
     <table class="table table-bordered table-striped">
         <thead class="thead-light">
             <tr>
@@ -17,6 +20,12 @@
                     <button class="btn btn-primary" (click)="onEdit(biller.id)">Editar</button>
                 </td>
             </tr>
-        </tbody>   
+        </tbody>
     </table>
+</div>
+
+<div *ngIf="billerList.length === 0">
+    <div class="d-flex justify-content-center">
+        <h1>No hay Registros</h1>
+    </div>
 </div>

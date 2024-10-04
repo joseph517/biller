@@ -12,20 +12,21 @@ export class ListViewComponent implements OnInit {
 
   billerList: Biller[] = [];
 
+  onSearch(term: string) {
+    this.billerList = this.billerService.onSearch(term);
+  }
+
   constructor(
     private billerService: BillerService,
     private router: Router
   ) { }
 
   ngOnInit(): void {
-    this.billerList = this.billerService.getBillers();
+    this.billerList = this.billerService.getBillers();    
   }
 
   onEdit(billerId: string) {
     this.router.navigate([`create-view/edit-form/${billerId}`]);
   }
-
-
-
 
 }

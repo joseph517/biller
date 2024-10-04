@@ -5,7 +5,7 @@ import { CreateViewComponent } from './pages/create-view/create-view.component';
 import { BillerRoutingModule } from './biller.routing.module';
 import { CreateFormComponent } from './components/create-form/create-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { SearchComponent } from './components/search/search.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +17,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     BillerRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SearchComponent
   ]
 })
 export class BillerModule { }

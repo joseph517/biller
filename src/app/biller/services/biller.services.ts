@@ -27,10 +27,18 @@ export class BillerService {
 
     setBiller(biller: Biller, id: string) {
         biller.id = id;
-        console.log('gola',biller);
         this.billerList = this.getBillers();
         const index = this.billerList.findIndex(b => b.id === biller.id);
         this.billerList[index] = biller;
         localStorage.setItem('billerList', JSON.stringify(this.billerList));
-    }    
+    }
+    
+    onSearch(term: string) {
+        return this.billerList = this.getBillers().filter(biller => 
+            (biller.name && biller.name.toLowerCase().includes(term.toLowerCase())) || 
+            (biller.dni && String(biller.dni).includes(term))
+        );
+    }
+    
+    
 }

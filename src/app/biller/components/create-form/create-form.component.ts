@@ -22,8 +22,6 @@ export class CreateFormComponent implements OnInit {
   newProduct!: FormGroup;
 
   ngOnInit(): void {
-    console.log(this.biller);
-    
     this.createUserForm = this.fb.group({
       name: new FormControl('', [Validators.required]),
       dni: new FormControl('', [Validators.required, Validators.pattern('^[0-9]+$')]),
